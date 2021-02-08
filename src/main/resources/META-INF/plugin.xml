@@ -1,19 +1,48 @@
+<!-- Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
+
 <idea-plugin>
-    <id>com.github.himcs.ideapluginleetcode</id>
-    <name>idea_plugin_leetcode</name>
-    <vendor>himcs</vendor>
 
-    <!-- Product and plugin compatibility requirements -->
-    <!-- https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
-    <depends>com.intellij.modules.platform</depends>
+  <!-- Unique id for this plugin. Must stay constant for the life of the plugin. -->
+  <id>org.intellij.sdk.action</id>
 
-    <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.himcs.ideapluginleetcode.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.himcs.ideapluginleetcode.services.MyProjectService"/>
-    </extensions>
+  <!-- Text to display as name on Preferences/Settings | Plugin page -->
+  <name>SDK: Action Sample</name>
 
-    <applicationListeners>
-        <listener class="com.github.himcs.ideapluginleetcode.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </applicationListeners>
+  <!-- Indicate this plugin can be loaded in all IntelliJ Platform-based products. -->
+  <depends>com.intellij.modules.platform</depends>
+
+  <!-- Text to display as description on Preferences/Settings | Plugin page -->
+  <description>
+    <![CDATA[
+      Demonstrates implementing Action and Action Group patterns.<br> Adds entries to the Tools menu.
+    ]]>
+  </description>
+  <change-notes>
+    <![CDATA[
+      <ul>
+        <li><b>2.0.0</b> Renamed from register_actions and converted to Gradle project.</li>
+        <li><b>1.1</b> Refactor to give users feedback when selecting menu items.</li>
+        <li><b>1.0</b> Release 2018.3 and earlier.</li>
+      </ul>
+    ]]>
+  </change-notes>
+
+  <!-- Text to display as company information on Preferences/Settings | Plugin page -->
+  <vendor url="https://plugins.jetbrains.com">IntelliJ Platform SDK</vendor>
+
+  <!-- Declare the default resource location for localizing menu strings -->
+<!--  <resource-bundle>messages.BasicActionsBundle</resource-bundle>-->
+
+  <actions>
+
+
+    <action id="io.github.himcs.action.PopupDialogAction"
+      class="io.github.himcs.action.PopupDialogAction"
+      text="Test" description="Test"
+      icon="SdkIcons.Sdk_default_icon">
+      <add-to-group group-id="ToolsMenu" anchor="first"/>
+      <override-text place="MainMenu" text="Pop Dialog Action"/>
+    </action>
+  </actions>
+
 </idea-plugin>

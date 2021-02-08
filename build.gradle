@@ -1,0 +1,38 @@
+// Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.
+
+plugins {
+    id 'java'
+    id 'org.jetbrains.intellij' version '0.6.5'
+}
+
+group 'org.intellij.sdk'
+version '2.0.0'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+dependencies {
+    // https://mvnrepository.com/artifact/com.google.code.gson/gson
+    compile group: 'com.google.code.gson', name: 'gson', version: '2.8.6'
+    // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
+    compile group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.9.1'
+
+}
+
+// See https://github.com/JetBrains/gradle-intellij-plugin/
+intellij {
+    version = '2020.2'
+    plugins = ['java']
+}
+
+buildSearchableOptions {
+    enabled = false
+}
+
+patchPluginXml {
+    version = project.version
+    sinceBuild = '202'
+    untilBuild = '203.*'
+}
